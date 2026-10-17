@@ -1,0 +1,3 @@
+Those are the main thoughts behind this project which don't have any paper notes I will or did make during the developement.
+
+So to start off, I have made `main.go` that will hold the main code of the project. I don't know if this project is even going to require multiple files or if it will be just one static `main.go` I guess we will go and select the path in the making, we can always change this later on. It will just be a ton of work later on.

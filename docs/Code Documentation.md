@@ -1,0 +1,1 @@
+Those notes are for documenting the code. I still don't know if I will be documenting this or not so this is really just a placeholder now.
