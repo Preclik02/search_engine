@@ -22,3 +22,12 @@ This means I can't use third party libraries. I will have to use only what you g
 # DOCUMENTATION
 The full notes in obsidian will be accessible in foler specifically made for them or zip file tied to the releases if I do any. The documentation will mainly focus on explaining how I think behind the code not really on how the code works. But I might also make some section for the documentation of the code too.
 
+# KEY FEATURES
+### File Ingestion & Parsing
+Make the filenames readable letter by letter.
+
+### CLI Flags & Basic Search
+Make the program support flags and make sure it searches the directory and sub directories.
+
+### Ranking The Results
+If some filenames are have more common than the rest make them show up first.
