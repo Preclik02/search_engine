@@ -8,34 +8,39 @@ import (
 
 )
 
-func main() {
-
-	var directories []string
+func check_and_add(directories []string, path string) []string {
 	
-	// -- read pwd -- //
-	entries, err := os.ReadDir("./")
+	entries, err := os.ReadDir(path)
 	if err != nil {
 		log.Fatal(err)
 	}
 	
-	// -- read entry by entry -- //
 	for _, entry := range entries {
-
-		// -- check && append if it is a directory -- //
+		
 		if entry.IsDir() {
-			// -- debug -- //
 			fmt.Println("Directory")
 			fmt.Println(entry.Name())
-			
-			// -- append directory to slice -- //
 			directories = append(directories, entry.Name())
+			fmt.Println(directories)
 		} else {
 			fmt.Println("Not Directory")
 			fmt.Println(entry.Name())
 		}
-
+	
 	}
-	// -- debug -- //
+	return directories
+
+}
+
+func main() {
+
+	var directories []string
+	var path string
+
+	path = "./"
+
+	directories = check_and_add(directories, path)
+
 	fmt.Println(directories)
 
 }
