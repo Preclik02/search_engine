@@ -2,6 +2,7 @@ package main
 
 import (
 
+	"flag"
 	"fmt"
 	"os"
 	"log"
@@ -29,18 +30,32 @@ func check_and_add(directories []string, path string) []string {
 	
 	}
 	return directories
+}
+
+func search_filename(filename string, path string) {
+
 
 }
+
 
 func main() {
 
 	var directories []string
 	var path string
+	var clue string
+
+	
+	flag.StringVar(&clue, "clue", "", "string that the user remembers")
+
+	fmt.Println(clue)
 
 	path = "./"
 
-	directories = check_and_add(directories, path)
+	for _, _ = range directories { 
+		
+		directories = check_and_add(directories, path)
 
-	fmt.Println(directories)
+		fmt.Println(directories[1])
+	}
 
 }
