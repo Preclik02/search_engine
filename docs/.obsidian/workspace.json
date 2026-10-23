@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Thoughts.md",
+                "file": "To-Do stuff.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Thoughts"
+              "title": "To-Do stuff"
             }
           }
         ]
@@ -190,8 +190,9 @@
   },
   "active": "d94639dac0e5231a",
   "lastOpenFiles": [
-    "Code Documentation.md",
     "Thoughts.md",
+    "To-Do stuff.md",
+    "Code Documentation.md",
     "create a link.md",
     "Untitled 1.md",
     "Welcome.md"

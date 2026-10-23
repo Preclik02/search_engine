@@ -1,0 +1,1 @@
+So definitely make a flag that will specify how much letters does the clue have right and don't print filenames under this many characters matching.
