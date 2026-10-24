@@ -2,6 +2,7 @@ package main
 
 import (
 
+	//"strings"
 	"flag"
 	"fmt"
 	"os"
@@ -18,25 +19,39 @@ func check_and_add(directories []string, path string, clue string) []string {
 	
 	for _, entry := range entries {
 	
-		search_filename(entry.Name(), path, clue)
+		x := []string{entry.Name()}
+
+		search_filename(x, path, clue)
 
 		if entry.IsDir() {
-			fmt.Println("Directory")
-			fmt.Println(entry.Name())
-			directories = append(directories, entry.Name())
-			fmt.Println(directories)
-		} else {
-			fmt.Println("Not Directory")
-			fmt.Println(entry.Name())
+			fmt.Println("Directory")  // -- DEBUG -- //
+			fmt.Println(entry.Name()) // -- DEBUG -- // 
+			pwd, err := os.Getwd()
+			if err != nil {
+				log.Fatal(err)
+			}
+			directories = append(directories, pwd+"/"+entry.Name())
+			//fmt.Println(directories)	// -- DEBUG -- //
+		} else {				// -- DEBUG -- //
+			fmt.Println("Not Directory")    // -- DEBUG -- // 
+			fmt.Println(entry.Name()) 	// -- DEBUG -- //
 		}
 	
 	}
 	return directories
 }
 
-func search_filename(filename string, path string, clue string) {
+func search_filename(filename []string, path string, clue string) {
 
-	// -- seaching logic -- //
+	j := 0
+	for _, i := range filename {
+		
+		if i == filename[j] {
+		
+		}
+		
+		j ++
+	}
 
 }
 
@@ -47,22 +62,38 @@ func main() {
 	var path string
 	var clue string
 	var i int
+	var size_of_directories int
 	
 	flag.StringVar(&clue, "clue", "", "string that the user remembers")
-
 	flag.Parse()
 
-	fmt.Println(clue)
+	pwd, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+	path = pwd
 
-	path = "./"
+	directories = check_and_add(directories, path, clue)
+	for _, _ = range directories {
+		size_of_directories ++
+	}
 
 	i = 0
-	for _, _ = range directories { 
+	for k := 1; k <= size_of_directories; k ++{ 
 		
-		directories = check_and_add(directories, path, clue)
+		size_of_directories = 0
+		for _, _ = range directories {
+			size_of_directories ++ 
+		}
 
-		fmt.Println(directories[i])
-		
+		err := os.Chdir(directories[i])
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		path = directories[i]
+
+		directories = check_and_add(directories, path, clue)
 
 		i++
 	}
