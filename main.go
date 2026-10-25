@@ -2,7 +2,6 @@ package main
 
 import (
 
-	//"strings"
 	"flag"
 	"fmt"
 	"os"
@@ -10,7 +9,7 @@ import (
 
 )
 
-func check_and_add(directories []string, path string, clue string) []string {
+func check_and_add(directories []string, path string, clue_slice []string) []string {
 	
 	entries, err := os.ReadDir(path)
 	if err != nil {
@@ -20,39 +19,56 @@ func check_and_add(directories []string, path string, clue string) []string {
 	for _, entry := range entries {
 	
 		x := []string{entry.Name()}
+		var y []string
 
-		search_filename(x, path, clue)
+		for _, character := range x[0] {
+			y = append(y, string(character))
+		}
+
+		search_filename(entry.Name(), y, path, clue_slice)
 
 		if entry.IsDir() {
-			fmt.Println("Directory")  // -- DEBUG -- //
-			fmt.Println(entry.Name()) // -- DEBUG -- // 
 			pwd, err := os.Getwd()
 			if err != nil {
 				log.Fatal(err)
 			}
 			directories = append(directories, pwd+"/"+entry.Name())
-			//fmt.Println(directories)	// -- DEBUG -- //
-		} else {				// -- DEBUG -- //
-			fmt.Println("Not Directory")    // -- DEBUG -- // 
-			fmt.Println(entry.Name()) 	// -- DEBUG -- //
 		}
 	
 	}
 	return directories
 }
 
-func search_filename(filename []string, path string, clue string) {
+func search_filename(filename_string string, filename_slice []string, path string, clue_slice []string) {
 
-	j := 0
-	for _, i := range filename {
-		
-		if i == filename[j] {
-		
+	size_of_filename := 0
+	for _, _ = range filename_slice {
+		size_of_filename ++
+	}
+	
+	var characters_right int
+
+	//fmt.Println(clue_slice)
+	//fmt.Println(filename_slice)
+	//fmt.Println(filename_string)
+
+	for _, i := range filename_slice {
+		for _, j := range clue_slice {	
+			if i == j {
+				characters_right += 1
+			}
 		}
 		
-		j ++
 	}
 
+	if characters_right >= 1 {
+		pwd, err := os.Getwd()
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(pwd+"/"+filename_string)
+	}
+	
 }
 
 
@@ -63,9 +79,14 @@ func main() {
 	var clue string
 	var i int
 	var size_of_directories int
-	
+	var clue_slice []string
+
 	flag.StringVar(&clue, "clue", "", "string that the user remembers")
 	flag.Parse()
+
+	for _, character := range clue {
+		clue_slice = append(clue_slice, string(character))
+	}
 
 	pwd, err := os.Getwd()
 	if err != nil {
@@ -73,7 +94,7 @@ func main() {
 	}
 	path = pwd
 
-	directories = check_and_add(directories, path, clue)
+	directories = check_and_add(directories, path, clue_slice)
 	for _, _ = range directories {
 		size_of_directories ++
 	}
@@ -93,7 +114,7 @@ func main() {
 
 		path = directories[i]
 
-		directories = check_and_add(directories, path, clue)
+		directories = check_and_add(directories, path, clue_slice)
 
 		i++
 	}
