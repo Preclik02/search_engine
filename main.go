@@ -48,10 +48,6 @@ func search_filename(filename_string string, filename_slice []string, path strin
 	
 	var characters_right int
 
-	//fmt.Println(clue_slice)
-	//fmt.Println(filename_slice)
-	//fmt.Println(filename_string)
-
 	for _, i := range filename_slice {
 		for _, j := range clue_slice {	
 			if i == j {
