@@ -80,6 +80,8 @@ func main() {
 	flag.StringVar(&clue, "clue", "", "string that the user remembers")
 	flag.Parse()
 
+	fmt.Println("Yes")
+
 	for _, character := range clue {
 		clue_slice = append(clue_slice, string(character))
 	}
