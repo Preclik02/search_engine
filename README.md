@@ -31,3 +31,4 @@ Make the program support flags and make sure it searches the directory and sub d
 
 ### Ranking The Results
 If some filenames are have more common than the rest make them show up first.
+Right now it is the better rank the better match, and it is caped at how long is `clue`.

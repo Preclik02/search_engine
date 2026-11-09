@@ -45,17 +45,22 @@ func search_filename(filename_string string, filename_slice []string, path strin
 	for _, _ = range filename_slice {
 		size_of_filename ++
 	}
+	size_of_clue := 0
+	for _, _ = range clue_slice {
+		size_of_clue ++
+	}
 	
 	var characters_right int
 
 	for _, i := range filename_slice {
 		for _, j := range clue_slice {	
-			if i == j {
+			if i == j && characters_right < size_of_clue {
 				characters_right += 1
 			}
 		}
 		
 	}
+	
 
 	if characters_right >= 1 {
 		pwd, err := os.Getwd()
@@ -63,8 +68,8 @@ func search_filename(filename_string string, filename_slice []string, path strin
 			log.Fatal(err)
 		}
 		fmt.Println(pwd+"/"+filename_string)
+		fmt.Printf("Rank - %d\n", characters_right)
 	}
-	
 }
 
 
